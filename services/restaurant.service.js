@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = `http://localhost:3000/api/restaurants`;
+const baseUrl = `${process.env.NEXTAUTH_URL}/api/restaurants`;
 
 class RestaurantService {
 	constructor() {

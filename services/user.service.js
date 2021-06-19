@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = `http://localhost:3000/api/users`;
+const baseUrl = `${process.env.NEXTAUTH_URL}/api/users`;
 
 class UserService {
 	constructor() {
