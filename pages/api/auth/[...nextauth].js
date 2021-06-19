@@ -19,11 +19,13 @@ export default NextAuth({
 			async authorize(credentials) {
 				const { username, password } = credentials;
 				const { data } = await userService.getAll();
+				console.log('data',data);
 
 				const user = data.find((user) => {
 					const decryptedPass = decryptWithAES(user.password);
 					return user.username === username && decryptedPass === password;
 				});
+				console.log('user', user);
 
 				// If no error and we have user data, return it
 				if (user) return user;
