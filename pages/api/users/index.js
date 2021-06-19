@@ -1,6 +1,6 @@
 import dbConnect from '../../../utils/dbConnect';
 import User from './../../../models/User';
-import jsSHA from "jssha";
+import { encryptWithAES } from './../../../utils/hashPash';
 
 export default async function handler(req, res) {
 	const { method } = req;
@@ -33,17 +33,10 @@ export default async function handler(req, res) {
 			return res.status(400).json({ message: 'Please fill all the fields in the form' });
 		}
 
-		const hashPass = calculateHash(password);
+		const hashPass = encryptWithAES(password);
 
 		User.create({ username, favouriteRestaurants, password: hashPass })
 			.then((user) => res.status(201).json(user))
 			.catch((err) => res.status(500).json(err));
 	}
 }
-
-const calculateHash = (password) => {
-	const shaObj = new jsSHA("SHA-512", "TEXT", { encoding: "UTF8" });
-	shaObj.update(password);
-	const hash = shaObj.getHash("HEX");
-	return hash;
-};

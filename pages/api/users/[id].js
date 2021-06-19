@@ -24,7 +24,6 @@ export default async function handler(req, res) {
 	}
 
 	function updateUser() {
-        console.log(`id: ${id} <-`)
         User.findByIdAndUpdate({ _id: id }, { ...req.body }, { new: true })
             .then(user => res.status(200).json(user))
             .catch(err => res.status(500).json(err));
