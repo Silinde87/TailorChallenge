@@ -3,7 +3,7 @@ import Providers from 'next-auth/providers';
 import userService from './../../../services/user.service';
 import { decryptWithAES } from './../../../utils/hashPash';
 
-export default NextAuth({
+const options = {
 	providers: [
 		Providers.Credentials({
 			// The name to display on the sign in form (e.g. 'Sign in with...')
@@ -55,4 +55,9 @@ export default NextAuth({
 		maxAge: 30 * 24 * 60 * 60, // 30 days
 	},
 	theme: 'light',
-});
+	pages: {
+		signIn: '/auth/login',
+	  }
+}
+
+export default (req, res) => NextAuth(req, res, options);
