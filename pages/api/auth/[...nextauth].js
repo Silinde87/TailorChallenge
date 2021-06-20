@@ -55,9 +55,6 @@ const options = {
 		maxAge: 30 * 24 * 60 * 60, // 30 days
 	},
 	theme: 'light',
-	pages: {
-		signIn: '/auth/login',
-	  }
 }
 
 export default (req, res) => NextAuth(req, res, options);
