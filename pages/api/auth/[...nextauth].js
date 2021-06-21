@@ -18,14 +18,12 @@ const options = {
             // Authorization logic
 			async authorize(credentials) {
 				const { username, password } = credentials;
-				const { data } = await userService.getAll();
-				console.log('data',data);
+				const { data } = await userService.getAll();				
 
 				const user = data.find((user) => {
 					const decryptedPass = decryptWithAES(user.password);
 					return user.username === username && decryptedPass === password;
-				});
-				console.log('user', user);
+				});				
 
 				// If no error and we have user data, return it
 				if (user) return user;
@@ -48,6 +46,15 @@ const options = {
 			return token;
 		},
 	},
+	//Custom auth pages
+	pages: {
+		signIn: '/auth/login',
+		// signOut: '/auth/signout',
+		// error: '/auth/error', // Error code passed in query string as ?error=
+		// verifyRequest: '/auth/verify-request', // (used for check email message)
+		// newUser: null // If set, new users will be directed here on first sign in
+	},
+	site: process.env.NEXTAUTH_URL || "localhost:3000",
 
 	database: process.env.DBURL,
 	session: {

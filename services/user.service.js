@@ -7,8 +7,7 @@ class UserService {
 		this.instance = axios.create({
 			baseURL: baseUrl,
 			withCredentials: true,
-		});
-		console.log('nextauth-route', baseUrl);
+		});		
 	}
 
     getAll = () => this.instance.get('/');
