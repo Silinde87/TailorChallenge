@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 	await dbConnect();
 
 	switch (method) {
-		case 'GET':
+		case 'PUT':
 			return getUsers();
 		case 'POST':
 			return createUser();
