@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-const baseUrl = `${process.env.NEXTAUTH_URL}/api/users`;
+const baseUrl = `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users`;
 
 class UserService {
 	constructor() {
 		this.instance = axios.create({
 			baseURL: baseUrl,
 			withCredentials: true,
-		});		
+		});
 	}
 
-    getAll = () => this.instance.put('/');
+	getAll = () => this.instance.put('/');
 	getById = (id) => this.instance.get(`/${id}`);
 	deleteById = (id) => this.instance.delete(`/${id}`);
 	create = (data) => this.instance.post('/', data);

@@ -5,7 +5,7 @@ const Home = () => {
 	const [session, loading] = useSession();
 
 	useEffect(() => {
-		//console.log('front', session);
+		
 	}, [session]);
 
 	return (
