@@ -24,7 +24,6 @@ const options = {
 					const decryptedPass = decryptWithAES(user.password);
 					return user.username === username && decryptedPass === password;
 				});
-
 				// If no error and we have user data, return it
 				if (user) return user;
 				// Return null if user data could not be retrieved

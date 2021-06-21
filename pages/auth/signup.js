@@ -3,15 +3,13 @@ import { useRouter } from 'next/router';
 import { signIn, signOut, useSession } from 'next-auth/client';
 
 export default function signup() {
-    const [session, loading] = useSession();
+	const [session, loading] = useSession();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+	const handleSubmit = (e) => {
+		e.preventDefault();
+	};
 
-
-    }
-
-    return (
+	return (
 		<form method="post" action="/api/users">
 			<label>
 				Username
@@ -23,5 +21,5 @@ export default function signup() {
 			</label>
 			<button type="submit">Register</button>
 		</form>
-    )
+	);
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import { getCsrfToken } from 'next-auth/client';
 
 export default function Login({ csrfToken }) {
-	//
 	return (
 		<form method="post" action="/api/auth/callback/credentials">
 			<input name="csrfToken" type="hidden" defaultValue={csrfToken} />

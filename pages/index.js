@@ -1,4 +1,3 @@
-import styles from './index.module.css';
 import { useSession } from 'next-auth/client';
 import { useEffect } from 'react';
 
@@ -10,8 +9,8 @@ const Home = () => {
 	}, [session]);
 
 	return (
-		<section className={styles.container}>
-			<h1 className={styles.title}>Welcome to Next.js!</h1>
+		<section>
+			<h1>Welcome to Next.js!</h1>
 		</section>
 	);
 };

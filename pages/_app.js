@@ -1,14 +1,24 @@
-import '../styles/global.css';
-import { Provider } from 'next-auth/client'
-import Layout from '../components/Layout/Layout';
+import { Provider } from 'next-auth/client';
+import Head from 'next/head';
+import GlobalStyle from '../styles/global.styled';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '../styles/theme';
+import NavBar from '../components/NavBar/NavBar';
 
 // This default export is required in a new `pages/_app.js` file.
-export default function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
 	return (
+
 		<Provider session={pageProps.session}>
-			<Layout>
-				<Component {...pageProps} />	
-			</Layout>
+			<Head>
+				<title>TailorChallenge - Pau Rodríguez</title>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+			<GlobalStyle />
+			<ThemeProvider theme={theme}>
+				<NavBar />
+				<Component {...pageProps} />				
+			</ThemeProvider>
 		</Provider>
 	);
 }
