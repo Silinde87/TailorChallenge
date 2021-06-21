@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const baseUrl = `${process.env.NEXTAUTH_URL}/api/restaurants`;
+const baseUrl = `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/restaurants`;
 
 class RestaurantService {
 	constructor() {
 		this.instance = axios.create({
 			baseURL: baseUrl,
 			withCredentials: true,
-		});	
+		});
 	}
 	
 	getAll = () => this.instance.get('/');

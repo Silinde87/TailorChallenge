@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = `${process.env.NEXTAUTH_URL}/api/users`;
+const baseUrl = `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users`;
 
 class UserService {
 	constructor() {
@@ -8,14 +8,13 @@ class UserService {
 			baseURL: baseUrl,
 			withCredentials: true,
 		});
-		console.log('nextauth-route', baseUrl);
 	}
 
-    getAll = () => this.instance.get('/');
+	getAll = () => this.instance.put('/');
 	getById = (id) => this.instance.get(`/${id}`);
 	deleteById = (id) => this.instance.delete(`/${id}`);
 	create = (data) => this.instance.post('/', data);
-	updateById = (id, data) => this.instance.put(`/${id}`, data);
+	updateById = (id, data) => this.instance.post(`/${id}`, data);
 }
 
 const userService = new UserService();

@@ -9,32 +9,29 @@ const options = {
 			// The name to display on the sign in form (e.g. 'Sign in with...')
 			name: 'credentials',
 
-            // The fields of the form
+			// The fields of the form
 			credentials: {
 				username: { label: 'Username', type: 'text', placeholder: 'Introduce your name' },
 				password: { label: 'Password', type: 'password', placeholder: 'Introduce your password' },
 			},
 
-            // Authorization logic
+			// Authorization logic
 			async authorize(credentials) {
 				const { username, password } = credentials;
 				const { data } = await userService.getAll();
-				console.log('data',data);
 
 				const user = data.find((user) => {
 					const decryptedPass = decryptWithAES(user.password);
 					return user.username === username && decryptedPass === password;
 				});
-				console.log('user', user);
-
 				// If no error and we have user data, return it
 				if (user) return user;
 				// Return null if user data could not be retrieved
 				return null;
 			},
-		})
+		}),
 	],
-    // This passes user info to frontend
+	// This passes user info to frontend
 	callbacks: {
 		async signIn(user) {
 			return user;
@@ -44,10 +41,17 @@ const options = {
 			return session;
 		},
 		async jwt(token, user) {
-			if (user) token.user = user;
+			const newUser = { ...user };
+			delete newUser.password;
+			if (user) token.user = newUser;
 			return token;
 		},
 	},
+	//Custom auth pages
+	pages: {
+		signIn: '/auth/login',
+	},
+	site: process.env.NEXT_PUBLIC_NEXTAUTH_URL || 'http://localhost:3000',
 
 	database: process.env.DBURL,
 	session: {
@@ -55,6 +59,6 @@ const options = {
 		maxAge: 30 * 24 * 60 * 60, // 30 days
 	},
 	theme: 'light',
-}
+};
 
 export default (req, res) => NextAuth(req, res, options);
