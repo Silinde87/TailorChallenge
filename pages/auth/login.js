@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { getCsrfToken } from 'next-auth/client';
+import FormUser from '../../components/FormUser/FormUser';
+
+
+const METHOD = 'post';
+const ACTION_URL = "/api/auth/callback/credentials";
+const TYPE = 'submit';
+const BTN_TEXT = 'Log in';
+
 
 const validators = {
 	username: (value) => {
@@ -49,18 +57,16 @@ export default function Login({ csrfToken }) {
 	};
 
 	return (
-		<form method="post" action="/api/auth/callback/credentials">
-			<input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-			<label>
-				Username
-				<input name="username" type="text" onChange={handleChange} />
-			</label>
-			<label>
-				Password
-				<input name="password" type="password" onChange={handleChange} />
-			</label>
-			<button type="submit" disabled={errorOnSubmit}>Log in</button>			
-		</form>
+		<FormUser 
+			method={METHOD} 
+			actionUrl={ACTION_URL} 
+			csrfToken={csrfToken} 
+			handleChange={handleChange} 
+			errorOnSubmit={errorOnSubmit} 
+			type={TYPE} 
+			btnText={BTN_TEXT}
+		/>
+
 	);
 }
 

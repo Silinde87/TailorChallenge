@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import router from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
 import userService from '../../services/user.service';
+import FormUser from '../../components/FormUser/FormUser';
+
+const BTN_TEXT = 'Register';
 
 const validators = {
 	username: (value) => {
@@ -41,7 +44,7 @@ export default function signup() {
 		e.preventDefault();		
 		if (isValid()) {
 			setErrorOnSubmit(false);
-			const { username, password } = fields;
+			const { username, password } = fields;			
 			await userService.create({ username, password });
 			await signIn('credentials', { username: username, password: password })
 		} else {
@@ -62,19 +65,11 @@ export default function signup() {
 	};
 
 	return (
-		<form>
-			<label>
-				Username
-				<input name="username" type="text" onChange={handleChange} />
-			</label>
-			{errors['username'] && <p>{errors['username']}</p>}
-			<label>
-				Password
-				<input name="password" type="password" onChange={handleChange} />
-			</label>
-			{errors['password'] && <p>{errors['password']}</p>}
-			<button onClick={handleSubmit}>Register</button>
-			{errorOnSubmit && <p>There is an error on submit</p>}
-		</form>
+		<FormUser 
+			handleChange={handleChange} 
+			handleSubmit={handleSubmit} 
+			errorOnSubmit={errorOnSubmit} 
+			btnText={BTN_TEXT} 
+		/>
 	);
 }

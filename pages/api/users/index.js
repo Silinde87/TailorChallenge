@@ -30,5 +30,6 @@ export default async function handler(req, res) {
 		User.create({ username, favouriteRestaurants, password: hashPass })
 			.then((user) => res.status(201).json(user))
 			.catch((err) => res.status(500).json(err));
+			// TODO: Handle error when user is already created
 	}
 }

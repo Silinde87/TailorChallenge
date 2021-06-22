@@ -1,28 +1,31 @@
 import React from 'react';
 import SCNavBar from './NavBar.styled';
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { signIn, signOut } from 'next-auth/client';
 import Link from 'next/link';
+import { withAuth } from '../../context/auth.context';
+import { Button } from 'react-bootstrap';
 
-export default function NavBar() {
-	const [session, loading] = useSession();
+function NavBar({user, isLoggedIn}) {
 
 	return (
 		<SCNavBar>
-			{!session && (
+			{!isLoggedIn && (
 				<>
 					Not signed in <br />
-					<button onClick={() => signIn()}>Log in</button>
+					<Button onClick={() => signIn()}>Log in</Button>
 					<Link href="/auth/signup">
-						<button>Register</button>
+						<Button>Register</Button>
 					</Link>
 				</>
 			)}
-			{session && (
+			{isLoggedIn && (
 				<>
-					Signed in as {session.user.username} <br />
-					<button onClick={() => signOut()}>Sign out</button>
+					Signed in as {user.username} <br />
+					<Button onClick={() => signOut()}>Sign out</Button>
 				</>
 			)}
 		</SCNavBar>
 	);
 }
+
+export default withAuth(NavBar);

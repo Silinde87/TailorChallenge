@@ -9,7 +9,7 @@ export default function AuthProvider({children}) {
     const [ user, setUser ] = useState(null);
     const [ session, setSession ] = useSession();
 
-    useEffect(() => {        
+    useEffect(() => {
         if(session) {
             setIsLoggedIn(true);
             setIsLoading(false);
