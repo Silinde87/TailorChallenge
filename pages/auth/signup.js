@@ -35,14 +35,15 @@ export default function signup({ csrfToken }) {
 	};
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
-		setErrorOnSubmit(true);
+		e.preventDefault();		
 		if (isValid()) {
 			setErrorOnSubmit(false);
 			const { username, password } = fields;
 			await userService.create({ username, password });
 			await signIn('credentials', { username: username, password: password })			
 			router.push('/');
+		} else {
+			setErrorOnSubmit(true);
 		}
 	};
 
