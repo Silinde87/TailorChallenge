@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import router from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
 import userService from '../../services/user.service';
-import { getCsrfToken } from 'next-auth/client';
 
 const validators = {
 	username: (value) => {
@@ -18,7 +17,7 @@ const validators = {
 	},
 };
 
-export default function signup({ csrfToken }) {
+export default function signup() {
 	const [session, setSession] = useSession();
 	const [fields, setFields] = useState({
 		username: '',
@@ -33,6 +32,10 @@ export default function signup({ csrfToken }) {
 	const isValid = () => {
 		return !Object.keys(errors).some((key) => errors[key] !== undefined);
 	};
+	
+	useEffect(() => {
+		if(session) router.push('/');
+	}, [session])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();		
@@ -40,8 +43,7 @@ export default function signup({ csrfToken }) {
 			setErrorOnSubmit(false);
 			const { username, password } = fields;
 			await userService.create({ username, password });
-			await signIn('credentials', { username: username, password: password })			
-			router.push('/');
+			await signIn('credentials', { username: username, password: password })
 		} else {
 			setErrorOnSubmit(true);
 		}
@@ -75,12 +77,4 @@ export default function signup({ csrfToken }) {
 			{errorOnSubmit && <p>There is an error on submit</p>}
 		</form>
 	);
-}
-
-export async function getServerSideProps(context) {
-	return {
-		props: {
-			csrfToken: await getCsrfToken(context),
-		},
-	};
 }
