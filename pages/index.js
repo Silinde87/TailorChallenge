@@ -1,23 +1,19 @@
 import { useSession } from 'next-auth/client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import restaurantService from '../services/restaurant.service';
 import CardRestaurant from './../components/CardRestaurant/CardRestaurant';
 import styles from './../styles/index.module.css';
 
-const Home = () => {
+const Home = ({ restaurants }) => {
 	const [session, loading] = useSession();
-	const [restaurants, setRestaurants] = useState();
 
 	useEffect(() => {
-		restaurantService
-			.getAll()
-			.then((res) => setRestaurants(res.data))
-			.catch((err) => console.error('error', err));
+		console.log(restaurants);
 	}, []);
 
 	const displayRestaurants = () => {
-		return restaurants.map(({ name, image }) => {
-			return <CardRestaurant name={name} image={image} />;
+		return restaurants.map(({ id, name, image }) => {
+			return <CardRestaurant key={id} id={id} name={name} image={image} />;
 		});
 	};
 
@@ -27,5 +23,20 @@ const Home = () => {
 		</main>
 	);
 };
+
+export async function getStaticProps() {
+	let restaurants = [];
+
+	await restaurantService
+		.getAll()
+		.then((res) => (restaurants = res.data))
+		.catch((err) => console.error('error', err));
+
+	return {
+		props: {
+			restaurants,
+		},
+	};
+}
 
 export default Home;
