@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import userService from './../../../services/user.service';
+import User from '../../../models/User';
+import dbConnect from '../../../utils/dbConnect';
 import { decryptWithAES } from './../../../utils/hashPash';
 
 const options = {
@@ -16,17 +17,31 @@ const options = {
 			},
 
 			// Authorization logic
-			async authorize(credentials) {
+			authorize: async (credentials) => {
+				
 				const { username, password } = credentials;
-				const { data } = await userService.getAll();
+				await dbConnect();
 
-				const user = data.find((user) => {
-					const decryptedPass = decryptWithAES(user.password);
-					return user.username === username && decryptedPass === password;
-				});
-				// If no error and we have user data, return it
-				if (user) return user;
-				// Return null if user data could not be retrieved
+				const theUser = await User.findOne({username})
+					.then((userFound) => {
+						if(userFound){							
+							const decryptedPass = decryptWithAES(userFound.password);
+							const user = {...userFound._doc};				
+							if(decryptedPass == password){
+								return user;
+							} else {
+								console.log('pass NOT match');
+							} 
+						}else{
+							console.log('user not found');
+						} 
+					})
+					.catch(err => console.error('error', err));
+
+
+				//If no error and we have user data, return it
+				if (theUser) return theUser;
+				//Return null if user data could not be retrieved
 				return null;
 			},
 		}),

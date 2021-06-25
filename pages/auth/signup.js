@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import router from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
 import userService from '../../services/user.service';
-import { getCsrfToken } from 'next-auth/client';
+import FormUser from '../../components/FormUser/FormUser';
+
+const BTN_TEXT = 'Register';
 
 const validators = {
 	username: (value) => {
@@ -18,7 +20,7 @@ const validators = {
 	},
 };
 
-export default function signup({ csrfToken }) {
+export default function signup() {
 	const [session, setSession] = useSession();
 	const [fields, setFields] = useState({
 		username: '',
@@ -33,16 +35,20 @@ export default function signup({ csrfToken }) {
 	const isValid = () => {
 		return !Object.keys(errors).some((key) => errors[key] !== undefined);
 	};
+	
+	useEffect(() => {
+		if(session) router.push('/');
+	}, [session])
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
-		setErrorOnSubmit(true);
+		e.preventDefault();		
 		if (isValid()) {
 			setErrorOnSubmit(false);
-			const { username, password } = fields;
+			const { username, password } = fields;			
 			await userService.create({ username, password });
-			await signIn('credentials', { username: username, password: password })			
-			router.push('/');
+			await signIn('credentials', { username: username, password: password })
+		} else {
+			setErrorOnSubmit(true);
 		}
 	};
 
@@ -59,27 +65,11 @@ export default function signup({ csrfToken }) {
 	};
 
 	return (
-		<form>
-			<label>
-				Username
-				<input name="username" type="text" onChange={handleChange} />
-			</label>
-			{errors['username'] && <p>{errors['username']}</p>}
-			<label>
-				Password
-				<input name="password" type="password" onChange={handleChange} />
-			</label>
-			{errors['password'] && <p>{errors['password']}</p>}
-			<button onClick={handleSubmit}>Register</button>
-			{errorOnSubmit && <p>There is an error on submit</p>}
-		</form>
+		<FormUser 
+			handleChange={handleChange} 
+			handleSubmit={handleSubmit} 
+			errorOnSubmit={errorOnSubmit} 
+			btnText={BTN_TEXT} 
+		/>
 	);
-}
-
-export async function getServerSideProps(context) {
-	return {
-		props: {
-			csrfToken: await getCsrfToken(context),
-		},
-	};
 }
