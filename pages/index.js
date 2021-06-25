@@ -2,11 +2,11 @@ import { useSession } from 'next-auth/client';
 import { useEffect } from 'react';
 
 const Home = () => {
-	const [session, loading] = useSession();
+	//const [session, loading] = useSession();
 
-	useEffect(() => {
+	// useEffect(() => {
 		
-	}, [session]);
+	// }, [session]);
 
 	return (
 		<section>
