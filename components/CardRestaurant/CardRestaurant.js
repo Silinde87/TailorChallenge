@@ -1,12 +1,12 @@
 import React from 'react'
 import SCCardRestaurant from './CardRestaurant.styled'
-import Image from 'next/image';
+import Text from './../Text';
 
 export default function CardRestaurant({name, image}) {
     return (
         <SCCardRestaurant>
-            <Image src={image} layout="fill" />
-            <h4>{name}</h4>
+            <img src={image} />
+            <Text as="h4" weight="sansSerif" size="ml" line="ml" margin="5px 0 0 0">{name}</Text>
         </SCCardRestaurant>
     )
 }

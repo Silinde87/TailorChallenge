@@ -8,6 +8,7 @@ export const theme = {
 		workMedium: "WorkSans-Medium",
 		workSemiBold: "WorkSans-SemiBold",
 		workBold: "WorkSans-Bold",
+		sansSerif: "sans-serif",
 	},
 	typographySizes: {
 		s: {
