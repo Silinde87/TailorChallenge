@@ -7,10 +7,6 @@ import styles from './../styles/index.module.css';
 const Home = ({ restaurants }) => {
 	const [session, loading] = useSession();
 
-	useEffect(() => {
-		console.log(restaurants);
-	}, []);
-
 	const displayRestaurants = () => {
 		return restaurants.map(({ id, name, image }) => {
 			return <CardRestaurant key={id} id={id} name={name} image={image} />;

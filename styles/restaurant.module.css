@@ -1,0 +1,28 @@
+.img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.nameBox{
+
+}
+
+.typeBox{
+    width: 100%;
+    text-align: center;
+}
+
+.mapBox{
+    width: 100%;
+    height: 200px;
+    border: 1px solid gray;    
+}
+.scheduleBox{
+
+}
+
+.reviewContainer{
+
+}
