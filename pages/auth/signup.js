@@ -65,11 +65,13 @@ export default function signup() {
 	};
 
 	return (
-		<FormUser 
-			handleChange={handleChange} 
-			handleSubmit={handleSubmit} 
-			errorOnSubmit={errorOnSubmit} 
-			btnText={BTN_TEXT} 
-		/>
+		<main>
+			<FormUser 
+				handleChange={handleChange} 
+				handleSubmit={handleSubmit} 
+				errorOnSubmit={errorOnSubmit} 
+				btnText={BTN_TEXT} 
+			/>
+		</main>
 	);
 }

@@ -4,26 +4,54 @@ import { signIn, signOut } from 'next-auth/client';
 import Link from 'next/link';
 import { withAuth } from '../../context/auth.context';
 import { Button } from 'react-bootstrap';
+import Text from '../Text';
 
 function NavBar({user, isLoggedIn}) {
 
 	return (
 		<SCNavBar>
-			{!isLoggedIn && (
-				<>
-					Not signed in <br />
-					<Button onClick={() => signIn()}>Log in</Button>
-					<Link href="/auth/signup">
-						<Button>Register</Button>
-					</Link>
-				</>
-			)}
-			{isLoggedIn && (
-				<>
-					Signed in as {user.username} <br />
-					<Button onClick={() => signOut()}>Sign out</Button>
-				</>
-			)}
+			<div className="restButtonsBox">
+				<Link href="/">
+					<Button size="sm" variant="outline-dark">
+						<Text as="m" weight="sansSerif" size="s" line="s">
+							All Rests
+						</Text>
+					</Button>
+				</Link>
+				<Link href="/">
+					<Button size="sm" variant="outline-dark">
+						<Text as="m" weight="sansSerif" size="s" line="s">
+							Fav Rests
+						</Text>
+					</Button>
+				</Link>
+			</div>
+			<div className="logButtonsBox">
+				{!isLoggedIn && (
+					<>
+						<Button size="sm" variant="outline-dark" onClick={() => signIn()}>
+							<Text as="m" weight="sansSerif" size="s" line="s">
+								Log in
+							</Text>
+						</Button>
+						<Link href="/auth/signup">
+							<Button size="sm" variant="outline-dark">
+								<Text as="m" weight="sansSerif" size="s" line="s">
+									Register
+								</Text>
+							</Button>
+						</Link>
+					</>
+				)}
+				{isLoggedIn && (
+					<>
+						<Text as="p" weight="sansSerif" size="m" line="m">
+							Welcome back {user.username}
+						</Text>
+						<Button size="sm" variant="outline-dark" onClick={() => signOut()}>Sign out</Button>
+					</>
+				)}
+			</div>
 		</SCNavBar>
 	);
 }

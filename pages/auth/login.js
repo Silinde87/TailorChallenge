@@ -57,15 +57,17 @@ export default function Login({ csrfToken }) {
 	};
 
 	return (
-		<FormUser 
-			method={METHOD} 
-			actionUrl={ACTION_URL} 
-			csrfToken={csrfToken} 
-			handleChange={handleChange} 
-			errorOnSubmit={errorOnSubmit} 
-			type={TYPE} 
-			btnText={BTN_TEXT}
-		/>
+		<main>
+			<FormUser 
+				method={METHOD} 
+				actionUrl={ACTION_URL} 
+				csrfToken={csrfToken} 
+				handleChange={handleChange} 
+				errorOnSubmit={errorOnSubmit} 
+				type={TYPE} 
+				btnText={BTN_TEXT}
+			/>
+		</main>
 
 	);
 }

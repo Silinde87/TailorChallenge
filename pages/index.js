@@ -22,8 +22,7 @@ const Home = () => {
 	};
 
 	return (
-		<main >
-			<h1>Welcome to Next.js!</h1>
+		<main>
 			<section className={styles.restaurantContainer}>{restaurants && displayRestaurants()}</section>
 		</main>
 	);

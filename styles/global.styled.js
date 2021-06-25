@@ -6,8 +6,10 @@ const GlobalStyle = createGlobalStyle`
     body {
         padding: 0;
         margin: 0;
+        height: 100vh;
         font-family: sans-serif;            
     }
+
     #__next {
         display: flex;
         flex-flow: column;
@@ -28,6 +30,9 @@ const GlobalStyle = createGlobalStyle`
     main {
         padding: 0;
         flex: 1;
+        height: 100%;
+        padding: 0px 2rem;
+        padding-top: 30px;
         display: flex;
         flex-direction: column;
         justify-content: center;
