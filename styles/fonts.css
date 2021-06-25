@@ -1,0 +1,31 @@
+/* FONTS Import */
+@font-face {
+    font-family: "WorkSans-Light";
+    src: url("./../public/fonts/WorkSans-Light.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "WorkSans-Regular";
+    src: url("./../public/fonts/WorkSans-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "WorkSans-Medium";
+    src: url("../public/fonts/WorkSans-Medium.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "WorkSans-SemiBold";
+    src: url("./../public/fonts/WorkSans-SemiBold.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "WorkSans-Bold";
+    src: url("./../public/fonts/WorkSans-Bold.ttf");
+    font-weight: normal;
+    font-style: normal;
+}

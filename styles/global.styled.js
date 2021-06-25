@@ -6,12 +6,23 @@ const GlobalStyle = createGlobalStyle`
     body {
         padding: 0;
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;            
+        font-family: sans-serif;            
     }
+    #__next {
+        display: flex;
+        flex-flow: column;
+    }
+    h1,h2,h3,h4,h5,h6,p{
+        margin: 0;
+        padding: 0;
+    } 
 
     * {
         box-sizing: border-box;
+    }
+
+    a{
+        text-decoration: underline;
     }
 
     main {
