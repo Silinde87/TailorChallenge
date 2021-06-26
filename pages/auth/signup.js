@@ -35,18 +35,22 @@ export default function signup() {
 	const isValid = () => {
 		return !Object.keys(errors).some((key) => errors[key] !== undefined);
 	};
-	
+
 	useEffect(() => {
-		if(session) router.push('/');
-	}, [session])
+		if (session) router.push('/');
+	}, [session]);
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();		
+		e.preventDefault();
 		if (isValid()) {
 			setErrorOnSubmit(false);
-			const { username, password } = fields;			
-			await userService.create({ username, password });
-			await signIn('credentials', { username: username, password: password })
+			const { username, password } = fields;
+			userService
+				.create({ username, password })
+				.then(() => {
+					signIn('credentials', { username: username, password: password });
+				})
+				.catch((err) => console.error(err));
 		} else {
 			setErrorOnSubmit(true);
 		}
@@ -66,11 +70,11 @@ export default function signup() {
 
 	return (
 		<main>
-			<FormUser 
-				handleChange={handleChange} 
-				handleSubmit={handleSubmit} 
-				errorOnSubmit={errorOnSubmit} 
-				btnText={BTN_TEXT} 
+			<FormUser
+				handleChange={handleChange}
+				handleSubmit={handleSubmit}
+				errorOnSubmit={errorOnSubmit}
+				btnText={BTN_TEXT}
 			/>
 		</main>
 	);

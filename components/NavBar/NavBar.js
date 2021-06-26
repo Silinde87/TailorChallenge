@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SCNavBar from './NavBar.styled';
-import { signIn, signOut } from 'next-auth/client';
+import { signIn, signOut, useSession } from 'next-auth/client';
 import Link from 'next/link';
 import { withAuth } from '../../context/auth.context';
 import { Button } from 'react-bootstrap';
 import Text from '../Text';
+import userService from './../../services/user.service';
+import router from 'next/router';
 
-function NavBar({user, isLoggedIn}) {
+function NavBar({ user, isLoggedIn }) {
+	const [session, setSession] = useSession();
+	
+	const deleteAccount = () => {
+		userService
+			.deleteById(user._id)
+			.then(() => signOut())
+			.catch((err) => console.error(err));
+	};
+
+	useEffect(() => {		
+		router.push('/')
+	}, [session])
 
 	return (
 		<SCNavBar>
@@ -48,7 +62,12 @@ function NavBar({user, isLoggedIn}) {
 						<Text as="p" weight="sansSerif" size="m" line="m">
 							Welcome back {user.username}
 						</Text>
-						<Button size="sm" variant="outline-dark" onClick={() => signOut()}>Sign out</Button>
+						<Button size="sm" variant="outline-dark" onClick={() => signOut()}>
+							Sign out
+						</Button>
+						<Button size="sm" variant="outline-danger" onClick={() => deleteAccount()}>
+							Delete
+						</Button>
 					</>
 				)}
 			</div>
