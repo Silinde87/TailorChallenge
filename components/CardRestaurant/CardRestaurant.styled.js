@@ -20,8 +20,6 @@ const SCCardRestaurant = styled.article`
 	}
 
     img{
-        height: 200px;
-        width: 90%;
         object-fit: cover;
     }
     h4{

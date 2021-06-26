@@ -56,7 +56,7 @@ export default function Restaurant({ restaurantData }) {
 	};
 
 	return (
-		<main>
+		<main className={styles.restaurantDetailsContainer}>
 			<div className={styles.nameBox}>
 				<Text as="h2" size="ml" line="ml" margin="0 5px 0 0">
 					{name}
@@ -70,7 +70,9 @@ export default function Restaurant({ restaurantData }) {
 			<img className={styles.img} src={image} />
 			<div className={styles.typeBox}>
 				<Text as="p" size="m" line="m">
-					<b>{cuisine_type} from {neighborhood}</b>
+					<b>
+						Cuisine {cuisine_type} at {neighborhood}
+					</b>
 				</Text>
 			</div>
 			<div className={styles.mapBox}>

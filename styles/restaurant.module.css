@@ -25,5 +25,23 @@
 }
 
 .star{    
-    color: #F3BA2E; 
+    color: #F3BA2E;
+    cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+    .restaurantDetailsContainer{
+        width: 70%;
+        margin: auto;
+    }
+    .mapBox{
+        height: 300px;
+    }
+}
+
+@media (min-width: 1680px) {
+    .restaurantDetailsContainer{
+        width: 50%;
+        margin: auto;
+    }
 }

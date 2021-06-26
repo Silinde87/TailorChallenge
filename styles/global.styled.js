@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         flex: 1;
         height: 100%;
-        padding: 0px 2rem;
+        padding: 15px 2rem 30px 2rem;
         padding-top: 15px;
         display: flex;
         flex-direction: column;
