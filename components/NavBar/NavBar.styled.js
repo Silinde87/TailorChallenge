@@ -10,6 +10,7 @@ const SCNavBar = styled.nav`
 	position: sticky;
 	top: 0;
 	background-color: white;
+	z-index: 99;
 
 	button {
 		margin: 0px 3px;

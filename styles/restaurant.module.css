@@ -3,25 +3,25 @@
     height: 250px;
     object-fit: cover;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .nameBox{
-
+    display: flex;
+    margin-bottom: 10px;
 }
 
 .typeBox{
     width: 100%;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 .mapBox{
     width: 100%;
     height: 200px;
-    border: 1px solid gray;    
-}
-
-.reviewContainer{
-
+    border: 1px solid gray;
+    margin-bottom: 30px;
 }
 
 .star{    

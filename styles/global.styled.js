@@ -31,15 +31,11 @@ const GlobalStyle = createGlobalStyle`
         flex: 1;
         height: 100%;
         padding: 0px 2rem;
-        padding-top: 30px;
+        padding-top: 15px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
-    .mapboxgl-map,
-    .mapboxgl-marker{
-        z-index: -1;
     }
 `;
 

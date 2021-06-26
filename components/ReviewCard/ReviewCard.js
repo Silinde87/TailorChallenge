@@ -5,8 +5,8 @@ import Text from './../Text';
 export default function ReviewCard({name, date, rating, comments}) {
     return (
         <SCReviewCard>
-            <Text size="m" line="m">{name} - {rating}/5</Text>
-            <Text size="m" line="m">{date}</Text>
+            <Text size="m" line="m"><strong>{name}</strong> - {rating}/5</Text>
+            <Text size="s" line="s">{date}</Text>
             <Text size="m" line="m">{comments}</Text>
         </SCReviewCard>
     )

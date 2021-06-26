@@ -58,7 +58,7 @@ export default function Restaurant({ restaurantData }) {
 	return (
 		<main>
 			<div className={styles.nameBox}>
-				<Text as="h2" size="ml" line="ml">
+				<Text as="h2" size="ml" line="ml" margin="0 5px 0 0">
 					{name}
 				</Text>
 				{isFavourite ? (
@@ -69,8 +69,8 @@ export default function Restaurant({ restaurantData }) {
 			</div>
 			<img className={styles.img} src={image} />
 			<div className={styles.typeBox}>
-				<Text as="p" size="ml" line="ml">
-					{cuisine_type} from {neighborhood}
+				<Text as="p" size="m" line="m">
+					<b>{cuisine_type} from {neighborhood}</b>
 				</Text>
 			</div>
 			<div className={styles.mapBox}>
