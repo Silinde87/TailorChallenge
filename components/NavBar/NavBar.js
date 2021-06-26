@@ -18,10 +18,6 @@ function NavBar({ user, isLoggedIn }) {
 			.catch((err) => console.error(err));
 	};
 
-	useEffect(() => {		
-		router.push('/')
-	}, [session])
-
 	return (
 		<SCNavBar>
 			<div className="restButtonsBox">
@@ -32,7 +28,7 @@ function NavBar({ user, isLoggedIn }) {
 						</Text>
 					</Button>
 				</Link>
-				<Link href="/">
+				<Link href="/favourites">
 					<Button size="sm" variant="outline-dark">
 						<Text as="m" weight="sansSerif" size="s" line="s">
 							Fav Rests
