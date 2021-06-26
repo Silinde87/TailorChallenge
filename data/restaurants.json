@@ -16,8 +16,8 @@
     "Wednesday": "5:30 pm - 12:00 am",
     "Thursday": "5:30 pm - 12:00 am",
     "Friday": "5:30 pm - 12:00 am",
-    "Saturday": "12:00 pm - 4:00 pm, 5:30 pm - 12:00 am",
-    "Sunday": "12:00 pm - 4:00 pm, 5:30 pm - 11:00 pm"
+    "Saturday": "5:30 pm - 12:00 am",
+    "Sunday": "5:30 pm - 11:00 pm"
   },
   "reviews": [{
       "name": "Steve",
@@ -57,7 +57,7 @@
     "Thursday": "5:30 pm - 11:00 pm",
     "Friday": "5:30 pm - 11:00 pm",
     "Saturday": "5:00 pm - 11:30 pm",
-    "Sunday": "12:00 pm - 3:00 pm, 5:00 pm - 11:00 pm"
+    "Sunday": "5:00 pm - 11:00 pm"
   },
   "reviews": [{
       "name": "Steph",
@@ -291,13 +291,13 @@
   "image":"https://es.nycgo.com/images/venues/4829/thedutch29_sa_bar-room_sm__x_large.jpg",
   "cuisine_type": "American",
   "operating_hours": {
-    "Monday": "11:30 am - 3:00 pm, 5:30 pm - 11:00 pm",
-    "Tuesday": "11:30 am - 3:00 pm, 5:30 pm - 11:00 pm",
-    "Wednesday": "11:30 am - 3:00 pm, 5:30 pm - 11:00 pm",
-    "Thursday": "11:30 am - 3:00 pm, 5:30 pm - 11:00 pm",
-    "Friday": "11:30 am - 3:00 pm, 5:30 pm - 11:30 pm",
-    "Saturday": "10:00 am - 3:00 pm, 5:30 pm - 11:30 pm",
-    "Sunday": "10:00 am - 3:00 pm, 5:30 pm - 11:00 pm"
+    "Monday": "5:00 pm - 12:00 am",
+    "Tuesday": "5:00 pm - 12:00 am",
+    "Wednesday": "5:00 pm - 12:00 am",
+    "Thursday": "5:00 pm - 12:00 am",
+    "Friday": "5:00 pm - 12:00 am",
+    "Saturday": "11:00 am - 12:00 am",
+    "Sunday": "11:00 am - 12:00 am"
   },
   "reviews": [{
       "name": "Steve",

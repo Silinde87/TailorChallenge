@@ -1,5 +1,4 @@
 import { useSession } from 'next-auth/client';
-import { useEffect } from 'react';
 import restaurantService from '../services/restaurant.service';
 import CardRestaurant from './../components/CardRestaurant/CardRestaurant';
 import styles from './../styles/index.module.css';

@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.css'
 
 const GlobalStyle = createGlobalStyle`
     html,
@@ -37,6 +36,10 @@ const GlobalStyle = createGlobalStyle`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .mapboxgl-map,
+    .mapboxgl-marker{
+        z-index: -1;
     }
 `;
 

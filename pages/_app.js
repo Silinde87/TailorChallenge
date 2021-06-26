@@ -5,11 +5,12 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
 import NavBar from '../components/NavBar/NavBar';
 import AuthProvider from '../context/auth.context';
+// Importing the Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // This default export is required in a new `pages/_app.js` file.
 export default function App({ Component, pageProps }) {
 	return (
-
 		<Provider session={pageProps.session}>
 			<AuthProvider>
 				<Head>
@@ -19,7 +20,7 @@ export default function App({ Component, pageProps }) {
 				<GlobalStyle />
 				<ThemeProvider theme={theme}>
 					<NavBar />
-					<Component {...pageProps} />		
+					<Component {...pageProps} />
 				</ThemeProvider>
 			</AuthProvider>
 		</Provider>
