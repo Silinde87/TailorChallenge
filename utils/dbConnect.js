@@ -6,11 +6,6 @@ if (!DBURL) {
 	throw new Error('Please define the MONGODB_URI environment variable inside .env');
 }
 
-/**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections growing exponentially
- * during API Route usage.
- */
 let cached = global.mongoose;
 
 if (!cached) {

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSession } from 'next-auth/client';
-import restaurantService from '../services/restaurant.service';
 import CardRestaurant from './../components/CardRestaurant/CardRestaurant';
 import styles from './../styles/index.module.css';
+import { getAllRestaurants } from '../utils/restaurants-utils';
 
 function Favourites({ restaurants }) {
 	const [session, loading] = useSession();
@@ -32,16 +32,9 @@ function Favourites({ restaurants }) {
 }
 
 export async function getStaticProps() {
-	let restaurants = [];
-
-	await restaurantService
-		.getAll()
-		.then((res) => (restaurants = res.data))
-		.catch((err) => console.error('error', err));
-
 	return {
 		props: {
-			restaurants,
+			restaurants: await getAllRestaurants(),
 		},
 	};
 }
