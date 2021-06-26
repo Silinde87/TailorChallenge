@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/client';
 import CardRestaurant from './../components/CardRestaurant/CardRestaurant';
 import styles from './../styles/index.module.css';
 import { getAllRestaurants } from '../utils/restaurants-utils';
+import Text from '../components/Text';
 
 function Favourites({ restaurants }) {
 	const [session, loading] = useSession();
@@ -26,7 +27,13 @@ function Favourites({ restaurants }) {
 
 	return (
 		<main>
-			<section className={styles.restaurantContainer}>{displayRestaurants()}</section>
+			{getFavouriteRestaurants().length === 0 ? (
+				<Text as="h3" size="l" line="l" margin="20px 0 0 0" className={styles.noRestaurantText}>
+					There is no restaurant in your favourites list.
+				</Text>
+			) : (
+				<section className={styles.restaurantContainer}>{displayRestaurants()}</section>
+			)}
 		</main>
 	);
 }

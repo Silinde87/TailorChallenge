@@ -29,6 +29,10 @@
     cursor: pointer;
 }
 
+.markerIcon{
+    cursor: pointer;
+}
+
 @media (min-width: 1024px) {
     .restaurantDetailsContainer{
         width: 70%;

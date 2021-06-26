@@ -37,7 +37,8 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Restaurant({ restaurantData }) {
-	const { id, name, image, cuisine_type, neighborhood, latlng, operating_hours, reviews } = restaurantData;
+	const { id, name, image, cuisine_type, neighborhood, latlng, operating_hours, reviews, address } =
+		restaurantData;
 	const [session, setSession] = useSession();
 	const [isFavourite, setIsFavourite] = useState(
 		session ? session.user.favouriteRestaurants.includes(id) : false
@@ -76,7 +77,7 @@ export default function Restaurant({ restaurantData }) {
 				</Text>
 			</div>
 			<div className={styles.mapBox}>
-				<Mapbox center={latlng} />
+				<Mapbox center={latlng} address={address} />
 			</div>
 			<ScheduleRestaurant schedule={operating_hours} />
 			<ReviewContainer reviews={reviews}></ReviewContainer>
