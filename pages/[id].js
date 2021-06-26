@@ -78,16 +78,16 @@ export default function Restaurant({ restaurantData }) {
 				</Tooltip>
 			</div>
 			<img className={styles.img} src={image} />
-			<div className={styles.typeBox}>
+			<section className={styles.typeBox}>
 				<Text as="p" size="m" line="m">
 					<b>
 						Cuisine {cuisine_type} at {neighborhood}
 					</b>
 				</Text>
-			</div>
-			<div className={styles.mapBox}>
+			</section>
+			<section className={styles.mapBox}>
 				<Mapbox center={latlng} address={address} />
-			</div>
+			</section>
 			<ScheduleRestaurant schedule={operating_hours} />
 			<ReviewContainer reviews={reviews}></ReviewContainer>
 		</main>

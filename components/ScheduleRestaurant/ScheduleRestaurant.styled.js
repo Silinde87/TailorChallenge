@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const SCScheduleRestaurant = styled.div`
+const SCScheduleRestaurant = styled.section`
 	margin-bottom: 15px;
 	h4 {
 		text-align: center;

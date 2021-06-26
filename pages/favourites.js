@@ -29,7 +29,7 @@ function Favourites({ restaurants }) {
 		<main>
 			{getFavouriteRestaurants().length === 0 ? (
 				<Text as="h3" size="l" line="l" margin="20px 0 0 0" className={styles.noRestaurantText}>
-					There is no restaurant in your favourites list.
+					There is no restaurants in your favourites list.
 				</Text>
 			) : (
 				<section className={styles.restaurantContainer}>{displayRestaurants()}</section>
