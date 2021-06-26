@@ -16,7 +16,7 @@ const validators = {
 	password: (value) => {
 		let message;
 		if (!value) message = 'Password is required';
-		else if (value.length < 6) message = 'Invalid password';
+		else if (value.length < 6) message = 'Password must be longer than 6 characters';
 		return message;
 	},
 };

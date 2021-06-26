@@ -14,7 +14,6 @@ export default function FormUser({
 	btnText,
 	errors,
 }) {
-	console.log(errorOnSubmit)
 	return (
 		<SCFormUser method={method} action={actionUrl}>
 			{csrfToken && <input name="csrfToken" type="hidden" defaultValue={csrfToken} />}
@@ -40,8 +39,14 @@ export default function FormUser({
 				{btnText}
 			</Button>
 			{errorOnSubmit && (
-				<Text className="errorOnSubmitLabel" size="m" line="m" margin="5px 0 0 0" color="lettersColorRed">
-					You should fill in all fields
+				<Text
+					className="errorOnSubmitLabel"
+					size="m"
+					line="m"
+					margin="5px 0 0 0"
+					color="lettersColorRed"
+				>
+					You should fill in all fields properly
 				</Text>
 			)}
 		</SCFormUser>

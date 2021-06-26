@@ -25,16 +25,16 @@ export default function ReviewContainer({ reviews }) {
 				>
 					{isActivedReviews ? (
 						<Text as="h4" size="m" line="m">
-							Hide last reviews
+							<b>Hide last reviews</b>
 						</Text>
 					) : (
 						<Text as="h4" size="m" line="m">
-							Show last reviews
+							<b>Show last reviews</b>
 						</Text>
 					)}
 				</AccordionSummary>
 				{reviews.map((review, i) => (
-					<AccordionDetails key={i}>
+					<AccordionDetails key={i} className="reviewContainer">
 						<ReviewCard
 							name={review.name}
 							date={review.date}

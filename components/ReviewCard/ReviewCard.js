@@ -7,7 +7,8 @@ export default function ReviewCard({name, date, rating, comments}) {
         <SCReviewCard>
             <Text size="m" line="m"><strong>{name}</strong> - {rating}/5</Text>
             <Text size="s" line="s">{date}</Text>
-            <Text size="m" line="m">{comments}</Text>
+            <Text size="m" line="m" className="reviewText">{comments}</Text>
+            <hr />
         </SCReviewCard>
     )
 }

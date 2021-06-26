@@ -13,6 +13,7 @@ import {
 import { useSession } from 'next-auth/client';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
+import { Tooltip } from '@material-ui/core';
 
 // Return a list of possible value for id
 export async function getStaticPaths() {
@@ -43,6 +44,7 @@ export default function Restaurant({ restaurantData }) {
 	const [isFavourite, setIsFavourite] = useState(
 		session ? session.user.favouriteRestaurants.includes(id) : false
 	);
+	const [showTooltip, setShowTooltip] = useState(false);
 
 	const handleFavClick = () => {
 		if (session) {
@@ -53,6 +55,11 @@ export default function Restaurant({ restaurantData }) {
 				addFavouriteRestaurant(id, session.user);
 				setIsFavourite(true);
 			}
+		} else {
+			setShowTooltip(true);
+			setTimeout(() => {
+				setShowTooltip(false);
+			}, 2500);
 		}
 	};
 
@@ -62,11 +69,13 @@ export default function Restaurant({ restaurantData }) {
 				<Text as="h2" size="ml" line="ml" margin="0 5px 0 0">
 					{name}
 				</Text>
-				{isFavourite ? (
-					<StarIcon className={styles.star} onClick={handleFavClick} />
-				) : (
-					<StarBorderIcon className={styles.star} onClick={handleFavClick} />
-				)}
+				<Tooltip title="Log in to add your favorite market" open={showTooltip} placement="right">
+					{isFavourite ? (
+						<StarIcon className={styles.star} onClick={handleFavClick} />
+					) : (
+						<StarBorderIcon className={styles.star} onClick={handleFavClick} />
+					)}
+				</Tooltip>
 			</div>
 			<img className={styles.img} src={image} />
 			<div className={styles.typeBox}>

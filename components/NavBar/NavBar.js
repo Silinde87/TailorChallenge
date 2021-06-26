@@ -23,14 +23,14 @@ function NavBar({ user, isLoggedIn }) {
 				<Link href="/">
 					<Button size="sm" variant="outline-dark">
 						<Text as="m" weight="sansSerif" size="s" line="s">
-							All Rests
+							Show all
 						</Text>
 					</Button>
 				</Link>
 				<Link href="/favourites">
 					<Button size="sm" variant="outline-dark">
 						<Text as="m" weight="sansSerif" size="s" line="s">
-							Fav Rests
+							Favorites
 						</Text>
 					</Button>
 				</Link>
