@@ -53,6 +53,9 @@ export default function signup() {
 				.catch((err) => console.error(err));
 		} else {
 			setErrorOnSubmit(true);
+			setTimeout(() => {
+				setErrorOnSubmit(false);
+			}, 1500);
 		}
 	};
 
@@ -75,6 +78,7 @@ export default function signup() {
 				handleSubmit={handleSubmit}
 				errorOnSubmit={errorOnSubmit}
 				btnText={BTN_TEXT}
+				errors={errors}
 			/>
 		</main>
 	);

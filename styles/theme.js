@@ -1,6 +1,7 @@
 export const theme = {
 	colors: {
 		primary: '#0070f3',
+		lettersColorRed: "#e63946",
 	},
 	typography: {
 		workLight: "WorkSans-Light",

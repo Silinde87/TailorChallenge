@@ -13,6 +13,9 @@ const SCFormUser = styled.form`
     width: 100%;
     align-self: center;
   }
+  .errorOnSubmitLabel{
+    text-align: center;
+  }
 	
   @media (min-width: 768px) {
 		width: 350px;

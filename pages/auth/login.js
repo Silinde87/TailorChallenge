@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { getCsrfToken } from 'next-auth/client';
 import FormUser from '../../components/FormUser/FormUser';
 
-
 const METHOD = 'post';
-const ACTION_URL = "/api/auth/callback/credentials";
+const ACTION_URL = '/api/auth/callback/credentials';
 const TYPE = 'submit';
 const BTN_TEXT = 'Log in';
-
 
 const validators = {
 	username: (value) => {
@@ -35,10 +33,9 @@ export default function Login({ csrfToken }) {
 	const [errorOnSubmit, setErrorOnSubmit] = useState(true);
 
 	useEffect(() => {
-		if(isValid()) setErrorOnSubmit(false)
+		if (isValid() || Object.values(errors).every((x) => x === null)) setErrorOnSubmit(false);
 		else setErrorOnSubmit(true);
-
-	}, [errors])
+	}, [errors]);
 
 	const isValid = () => {
 		return !Object.keys(errors).some((key) => errors[key] !== undefined);
@@ -58,17 +55,17 @@ export default function Login({ csrfToken }) {
 
 	return (
 		<main>
-			<FormUser 
-				method={METHOD} 
-				actionUrl={ACTION_URL} 
-				csrfToken={csrfToken} 
-				handleChange={handleChange} 
-				errorOnSubmit={errorOnSubmit} 
-				type={TYPE} 
+			<FormUser
+				method={METHOD}
+				actionUrl={ACTION_URL}
+				csrfToken={csrfToken}
+				handleChange={handleChange}
+				errorOnSubmit={errorOnSubmit}
+				type={TYPE}
 				btnText={BTN_TEXT}
+				errors={errors}
 			/>
 		</main>
-
 	);
 }
 
