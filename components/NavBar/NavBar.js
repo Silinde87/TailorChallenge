@@ -6,7 +6,6 @@ import { withAuth } from '../../context/auth.context';
 import { Button } from 'react-bootstrap';
 import Text from '../Text';
 import userService from './../../services/user.service';
-import router from 'next/router';
 
 function NavBar({ user, isLoggedIn }) {
 	const [session, setSession] = useSession();

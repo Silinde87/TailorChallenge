@@ -8,7 +8,7 @@ export default function ScheduleRestaurant({ schedule }) {
 
 	return (
 		<SCScheduleRestaurant>
-			<Text as="p" size="ml" line="ml" margin="0 0 5px 0">Opening hours</Text>
+			<Text as="h4" size="ml" line="ml" margin="0 0 5px 0">Opening hours</Text>
 			<Table responsive size="sm">
 				<tbody>
 					{scheduleList.map((el, i) => {
