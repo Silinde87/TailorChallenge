@@ -2,8 +2,24 @@ import React, { useEffect } from 'react';
 import { useSession } from 'next-auth/client';
 import CardRestaurant from './../components/CardRestaurant/CardRestaurant';
 import styles from './../styles/index.module.css';
-import { getAllRestaurants } from '../utils/restaurants-utils';
 import Text from '../components/Text';
+
+export async function getStaticProps() {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/restaurants`);
+	const restaurants = await res.json();
+
+	if (!restaurants) {
+		return {
+			notFound: true,
+		};
+	}
+
+	return {
+		props: {
+			restaurants,
+		},
+	};
+}
 
 function Favourites({ restaurants }) {
 	const [session, loading] = useSession();
@@ -36,14 +52,6 @@ function Favourites({ restaurants }) {
 			)}
 		</main>
 	);
-}
-
-export async function getStaticProps() {
-	return {
-		props: {
-			restaurants: await getAllRestaurants(),
-		},
-	};
 }
 
 export default Favourites;

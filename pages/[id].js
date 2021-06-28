@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Text from './../components/Text';
 import styles from './../styles/restaurant.module.css';
 import Mapbox from '../components/Map/Mapbox';
 import ScheduleRestaurant from '../components/ScheduleRestaurant/ScheduleRestaurant';
 import ReviewContainer from '../components/ReviewContainer/ReviewContainer';
-import {
-	addFavouriteRestaurant,
-	deleteFavouriteRestaurant,
-	getAllRestaurants,
-	getRestaurantById,
-} from '../utils/restaurants-utils';
+import { addFavouriteRestaurant, deleteFavouriteRestaurant } from '../utils/restaurants-utils';
 import { useSession } from 'next-auth/client';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
@@ -17,7 +12,9 @@ import { Tooltip } from '@material-ui/core';
 
 // Return a list of possible value for id
 export async function getStaticPaths() {
-	let restaurants = await getAllRestaurants();
+	const res = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/restaurants`);
+	const restaurants = await res.json();
+
 	let paths = restaurants.map(({ id }) => {
 		return {
 			params: {
@@ -30,9 +27,12 @@ export async function getStaticPaths() {
 
 // Fetch necessary data for the restaurant details using params.id
 export async function getStaticProps({ params }) {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/restaurants/${params.id}`);
+	const restaurantData = await res.json();
+
 	return {
 		props: {
-			restaurantData: await getRestaurantById(params.id),
+			restaurantData,
 		},
 	};
 }

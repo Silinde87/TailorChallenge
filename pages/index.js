@@ -1,7 +1,22 @@
-import { useSession } from 'next-auth/client';
 import CardRestaurant from './../components/CardRestaurant/CardRestaurant';
 import styles from './../styles/index.module.css';
-import { getAllRestaurants } from '../utils/restaurants-utils';
+
+export async function getStaticProps() {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/restaurants`);
+	const restaurants = await res.json();
+
+	if (!restaurants) {
+		return {
+			notFound: true,
+		};
+	}
+
+	return {
+		props: {
+			restaurants,
+		},
+	};
+}
 
 const Home = ({ restaurants }) => {
 	const displayRestaurants = () => {
@@ -16,13 +31,5 @@ const Home = ({ restaurants }) => {
 		</main>
 	);
 };
-
-export async function getStaticProps() {
-	return {
-		props: {
-			restaurants: await getAllRestaurants(),
-		},
-	};
-}
 
 export default Home;
