@@ -1,9 +1,15 @@
 import CardRestaurant from './../components/CardRestaurant/CardRestaurant';
 import styles from './../styles/index.module.css';
+import restaurantService from '../services/restaurant.service';
 
 export async function getStaticProps() {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/restaurants`);
-	const restaurants = await res.json();
+	let restaurants = [];
+
+	// Fetching data from API and passing it as props to component
+	await restaurantService
+		.getAll()
+		.then((res) => (restaurants = res.data))
+		.catch((err) => console.error('error', err));
 
 	if (!restaurants) {
 		return {
