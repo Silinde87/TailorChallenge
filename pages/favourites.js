@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/client';
 import CardRestaurant from './../components/CardRestaurant/CardRestaurant';
 import styles from './../styles/index.module.css';
 import Text from '../components/Text';
 import restaurantService from './../services/restaurant.service';
+import userService from '../services/user.service';
 
 export async function getStaticProps() {
 	let restaurants = [];
@@ -29,27 +30,37 @@ export async function getStaticProps() {
 
 function Favourites({ restaurants }) {
 	const [session, loading] = useSession();
-	let user;
+	const [userFavRestaurants, setUserFavRestaurants] = useState([]);
 
+	let user;
 	if (session) user = session.user;
 
-	function getFavouriteRestaurants() {
+	// Getting user's favourites restaurants.
+	useEffect(async () => {
 		if (user) {
-			return restaurants.filter((rest) => user.favouriteRestaurants.includes(rest.id));
-		} else {
-			return [];
+			const { _id } = user;
+			await userService
+				.getById(_id)
+				.then((user) => {
+					setUserFavRestaurants(
+						restaurants.filter((rest) => user.data.favouriteRestaurants.includes(rest.id))
+					);
+				})
+				.catch((err) => {
+					console.error(err);
+				});
 		}
-	}
+	}, [session]);
 
 	const displayRestaurants = () => {
-		return getFavouriteRestaurants().map(({ id, name, image }) => {
+		return userFavRestaurants.map(({ id, name, image }) => {
 			return <CardRestaurant key={id} id={id} name={name} image={image} />;
 		});
 	};
 
 	return (
 		<main>
-			{getFavouriteRestaurants().length === 0 ? (
+			{userFavRestaurants.length === 0 ? (
 				<Text as="h3" size="l" line="l" margin="20px 0 0 0" className={styles.noRestaurantText}>
 					There is no restaurants in your favourites list.
 				</Text>
