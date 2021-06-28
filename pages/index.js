@@ -1,7 +1,28 @@
-import { useSession } from 'next-auth/client';
 import CardRestaurant from './../components/CardRestaurant/CardRestaurant';
 import styles from './../styles/index.module.css';
-import { getAllRestaurants } from '../utils/restaurants-utils';
+import restaurantService from '../services/restaurant.service';
+
+export async function getStaticProps() {
+	let restaurants = [];
+
+	// Fetching data from API and passing it as props to component
+	await restaurantService
+		.getAll()
+		.then((res) => (restaurants = res.data))
+		.catch((err) => console.error('error', err));
+
+	if (!restaurants) {
+		return {
+			notFound: true,
+		};
+	}
+
+	return {
+		props: {
+			restaurants,
+		},
+	};
+}
 
 const Home = ({ restaurants }) => {
 	const displayRestaurants = () => {
@@ -16,13 +37,5 @@ const Home = ({ restaurants }) => {
 		</main>
 	);
 };
-
-export async function getStaticProps() {
-	return {
-		props: {
-			restaurants: await getAllRestaurants(),
-		},
-	};
-}
 
 export default Home;
