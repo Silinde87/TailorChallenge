@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Text from './../components/Text';
 import styles from './../styles/restaurant.module.css';
 import { addFavouriteRestaurant, deleteFavouriteRestaurant } from '../utils/restaurants-utils';
@@ -58,7 +58,7 @@ export default function Restaurant({ restaurantData }) {
 	);
 	const [showTooltip, setShowTooltip] = useState(false);
 
-	const handleFavClick = () => {
+	const handleFavClick = async () => {
 		if (session) {
 			if (isFavourite) {
 				deleteFavouriteRestaurant(id, session.user);

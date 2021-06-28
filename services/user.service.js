@@ -10,7 +10,7 @@ class UserService {
 		});
 	}
 
-	getById = (id) => this.instance.get(`/${id}`);
+	getById = (id) => this.instance.post(`/${id}`);
 	deleteById = (id) => this.instance.delete(`/${id}`);
 	create = (data) => this.instance.post('/', data);
 	updateById = (id, data) => this.instance.put(`/${id}`, data);
